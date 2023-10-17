@@ -9,17 +9,12 @@ jobs:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/configuration-reference/#executor-job
     docker:
-      - image: rektinator/msbuild-docker:latest
+      - image: stateoftheartio/qt6:6.2-mingw-aqt
     # Add steps to the job
     # See: https://circleci.com/docs/configuration-reference/#steps
-    environment:
-      QTDIR: /opt/qt/6.2.0/msvc2019_64
-      PATH: $QTDIR/bin:$PATH
     steps:
       - checkout
-      - run: apt-get update && apt-get install git
-      - run: apt-get update && apt-get install -y qt6-default qt6-qmake qt6-base qt6-tools qt6-svg qt6-xmlpatterns qt6-winextras cmake
-      - run: cmake -DCMAKE_PREFIX_PATH=$QTDIR -DCMAKE_BUILD_TYPE=Release -G Ninja -B build
+      - run: cmake -G Ninja -B build
       - run: cmake --build build
 
 # Orchestrate jobs using workflows

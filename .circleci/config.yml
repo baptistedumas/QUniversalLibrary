@@ -17,7 +17,7 @@ jobs:
       PATH: $QTDIR/bin:$PATH
     steps:
       - checkout
-      - run: apt-get update && apt-get install -y qt6-default qt6-qmake qt6-base qt6-tools qt6-svg qt6-xmlpatterns qt6-winextras cmake
+      - run: apt-get update && apt-get install -y qt6-default qt6-qmake qt6-base qt6-tools qt6-svg qt6-xmlpatterns qt6-winextras cmake git
       - run: cmake -DCMAKE_PREFIX_PATH=$QTDIR -DCMAKE_BUILD_TYPE=Release -G Ninja -B build
       - run: cmake --build build
 

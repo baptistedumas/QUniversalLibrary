@@ -21,7 +21,9 @@ jobs:
           shell: powershell.exe
           command: |
             docker info
-            winpty docker run -it entrevrak/qt653_msvc:latest cmd.exe
+            docker pull entrevrak/qt653_msvc:latest
+            docker run -it entrevrak/qt653_msvc:latest
+
       # - checkout
       # - run: cmake -B build
       # - run: cmake --build build

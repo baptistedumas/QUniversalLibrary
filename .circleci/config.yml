@@ -25,7 +25,7 @@ jobs:
           name: "build inside docker"
           command: |
             docker info
-            docker run -it entrevrak/qt653_msvc:latest && echo "Hello michel"
+            docker run -it entrevrak/qt653_msvc:latest -Command "echo 'Hello michel' && exit"
 
       # - checkout
       # - run: cmake -B build

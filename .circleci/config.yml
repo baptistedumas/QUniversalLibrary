@@ -19,13 +19,14 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run: 
-        name: "Caching docker image"
-        command: docker pull entrevrak/qt653_msvc:latest
+          name: "Caching docker image"
+          command: docker pull entrevrak/qt653_msvc:latest
       - run:
           name: "build inside docker"
           command: |
             docker info
-            docker run -it entrevrak/qt653_msvc:latest
+            docker run -it entrevrak/qt653_msvc:latest -Command "echo 'Hello michel' && exit"
+
       # - checkout
       # - run: cmake -B build
       # - run: cmake --build build

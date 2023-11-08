@@ -16,13 +16,16 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run: 
+        name: "Caching docker image"
+        command: docker pull entrevrak/qt653_msvc:latest
       - run:
-          name: "Check docker"
-          shell: powershell.exe
+          name: "build inside docker"
           command: |
             docker info
-            docker pull entrevrak/qt653_msvc:latest
-            docker run -it entrevrak/qt653_msvc:latest
+            docker run -it entrevrak/qt653_msvc:latest && echo "Hello michel"
 
       # - checkout
       # - run: cmake -B build
